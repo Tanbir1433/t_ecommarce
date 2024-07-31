@@ -20,8 +20,8 @@ class CircularShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: width,
-      width: height,
+      height: height,
+      width: width,
       child: Material(
         borderRadius: BorderRadius.circular(radius),
         color: backgroundColor,

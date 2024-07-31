@@ -16,7 +16,7 @@ class NavigationMenuBar extends StatelessWidget {
       bottomNavigationBar: Obx(
         () => NavigationBar(
           height: 45,
-          elevation: 0,
+          elevation: 0.0,
           backgroundColor: darkMode ? TColors.black : TColors.white,
           indicatorColor: darkMode ? TColors.white.withOpacity(0.1) : TColors.black.withOpacity(0.1),
           selectedIndex: controller.selectedIndex.value,
