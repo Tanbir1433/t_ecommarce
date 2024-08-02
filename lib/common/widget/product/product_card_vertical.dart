@@ -9,6 +9,7 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../icon/circular_icon.dart';
+import '../text/brand_title_verify_icon.dart';
 import '../text/product_price_text.dart';
 import '../text/product_title_text.dart';
 
@@ -78,24 +79,16 @@ class ProductCardVertical extends StatelessWidget {
               height: TSizes.spaceBtwItems / 2,
             ),
             /// Detail
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const ProductTitleText(text: "Green Nike Air Shoes",smallSize: true,),
-                  const SizedBox(
+                  ProductTitleText(text: "Green Nike Air Shoes",smallSize: true,),
+                  SizedBox(
                     height: TSizes.spaceBtwItems / 2,
                   ),
-                  Row(
-                    children: [
-                      Text("Nike",overflow: TextOverflow.ellipsis,maxLines: 1,style: Theme.of(context).textTheme.labelMedium,),
-                      const SizedBox(
-                        width: TSizes.xs,
-                      ),
-                      const Icon(Iconsax.verify5,color: TColors.primary,size: TSizes.iconXs,)
-                    ],
-                  ),
+                  BrandTitleWithVerifyIcon(title: 'Nike',),
                 ],
               ),
             ),

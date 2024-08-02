@@ -9,13 +9,14 @@ class SearchField extends StatelessWidget {
   final IconData? icon;
   final bool showBackground, showBorder;
   final VoidCallback? onTap;
+  final EdgeInsetsGeometry padding;
 
   const SearchField({
     super.key,
     required this.text,
     this.icon = Iconsax.search_normal,
     this.showBackground = true,
-    this.showBorder = true, this.onTap,
+    this.showBorder = true, this.onTap, required this.padding,
   });
 
   @override
@@ -24,7 +25,7 @@ class SearchField extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: TSizes.defaultSpace),
+        padding: padding,
         child: Material(
           color: showBackground
               ? darkMode
