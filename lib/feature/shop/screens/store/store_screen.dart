@@ -4,16 +4,11 @@ import 'package:t_store/common/widget/appbar/custom_tabbar.dart';
 import 'package:t_store/common/widget/cart/cart_counter.dart';
 import 'package:t_store/common/widget/layout/grid_layout.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
-import 'package:t_store/utils/constants/enums.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../../../../common/widget/brands/brand_card.dart';
-import '../../../../common/widget/brands/brand_show_case.dart';
-import '../../../../common/widget/image/circular_image.dart';
 import '../../../../common/widget/search_field/search_filed.dart';
-import '../../../../common/widget/text/brand_title_verify_icon.dart';
 import '../../../../utils/constants/colors.dart';
 import 'component/category_tab.dart';
 

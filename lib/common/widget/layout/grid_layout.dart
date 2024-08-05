@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import '../../../utils/constants/sizes.dart';
-import '../product/product_card_vertical.dart';
 
 class GridLayout extends StatelessWidget {
   final int itemCount;

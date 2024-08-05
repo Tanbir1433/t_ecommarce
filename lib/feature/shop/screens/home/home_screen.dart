@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -27,7 +26,6 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   /// Home AppBar
                   HomeAppBar(),
-
                   SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -55,12 +53,12 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: TSizes.spaceBtwItems,
                         ),
-
                         /// Categories
-                        HomeCategories()
+                        HomeCategories(),
                       ],
                     ),
                   ),
+                  SizedBox(height: TSizes.spaceBtwSections,)
                 ],
               ),
             ),
@@ -90,10 +88,6 @@ class HomeScreen extends StatelessWidget {
                   GridLayout(
                     itemCount: 4,
                     itemBuilder: (_ , index ) => const ProductCardVertical(),),
-
-
-
-
                 ],
               ),
             ),

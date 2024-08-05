@@ -24,6 +24,10 @@ class ProductCardVertical extends StatelessWidget {
       child: Container(
         width: 180,
         decoration: BoxDecoration(
+          border: Border.all(
+            color: dark ? TColors.darkGrey : TColors.white,
+            width: 1.5,
+          ),
           boxShadow: [ShadowStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(TSizes.productImageRadius),
           color: dark ? TColors.darkGrey : TColors.white,
@@ -37,7 +41,7 @@ class ProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   /// Product Image
-                  const BannerImage(imageUrl: TImages.productImage1,width: double.maxFinite,),
+                  const BannerImage(imageUrl: TImages.productImage22,width: double.maxFinite,),
 
                   /// Sale tag
                   Positioned(

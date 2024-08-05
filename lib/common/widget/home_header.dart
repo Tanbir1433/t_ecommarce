@@ -14,26 +14,23 @@ class PrimaryHeader extends StatelessWidget {
     return CurveWidget(
       child: Material(
         color: TColors.primary,
-        child: SizedBox(
-          height: 400,
-          child: Stack(
-            children: [
-              Positioned(
-                top: -150,
-                right: -250,
-                child: CircularShape(
-                  backgroundColor: TColors.textWhite.withOpacity(0.1),
-                ),),
-              Positioned(
-                top: 100,
-                right: -300,
-                child: CircularShape(
-                  backgroundColor: TColors.textWhite.withOpacity(0.1),
-                ),
+        child: Stack(
+          children: [
+            Positioned(
+              top: -150,
+              right: -250,
+              child: CircularShape(
+                backgroundColor: TColors.textWhite.withOpacity(0.1),
+              ),),
+            Positioned(
+              top: 100,
+              right: -300,
+              child: CircularShape(
+                backgroundColor: TColors.textWhite.withOpacity(0.1),
               ),
-              child,
-            ],
-          ),
+            ),
+            child,
+          ],
         ),
       ),
     );
