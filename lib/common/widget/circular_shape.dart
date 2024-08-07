@@ -12,7 +12,7 @@ class CircularShape extends StatelessWidget {
     super.key,
     this.width = 400,
     this.height = 400,
-    this.radius = 4000,
+    this.radius = 400,
     this.backgroundColor = TColors.white,
     this.child,
   });

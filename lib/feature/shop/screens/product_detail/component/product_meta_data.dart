@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/common/widget/icon/circular_icon.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';
 import 'package:t_store/common/widget/text/brand_title_verify_icon.dart';
 import 'package:t_store/common/widget/text/product_price_text.dart';

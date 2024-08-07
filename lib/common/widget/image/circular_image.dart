@@ -39,7 +39,7 @@ class CircularImage extends StatelessWidget {
                   : TColors.white),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            side: border ?? BorderSide(
+            side: border ?? const BorderSide(
               color: Colors.transparent
             )
           ),

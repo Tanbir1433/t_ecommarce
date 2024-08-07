@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widget/appbar/custom_appbar.dart';
 import 'package:t_store/common/widget/appbar/custom_tabbar.dart';
-import 'package:t_store/common/widget/cart/cart_counter.dart';
 import 'package:t_store/common/widget/layout/grid_layout.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 import '../../../../common/widget/brands/brand_card.dart';
+import '../../../../common/widget/product/cart/cart_counter.dart';
 import '../../../../common/widget/search_field/search_filed.dart';
 import '../../../../utils/constants/colors.dart';
 import 'component/category_tab.dart';
