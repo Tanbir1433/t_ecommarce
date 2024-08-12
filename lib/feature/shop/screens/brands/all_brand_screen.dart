@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widget/brands/brand_card.dart';
 import 'package:t_store/common/widget/layout/grid_layout.dart';
-import 'package:t_store/common/widget/product/sortable/sortable_products.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
-import 'package:t_store/feature/shop/screens/all_product/all_product_screen.dart';
 import 'package:t_store/feature/shop/screens/brands/brands_product.dart';
 
 import '../../../../common/widget/appbar/custom_appbar.dart';

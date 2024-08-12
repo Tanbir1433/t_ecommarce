@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "581025785752",
+    "project_id": "tecommerceapp-2e498",
+    "storage_bucket": "tecommerceapp-2e498.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581025785752:android:5ae69fe5127f073466eded",
+        "android_client_info": {
+          "package_name": "com.example.t_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581025785752-p67ddeafq7lq07keajkanfuklh3icgut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeL2PigJXyK0zL2GQgsr36cWeZn0mzTcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581025785752-p67ddeafq7lq07keajkanfuklh3icgut.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "581025785752-038su08ldv1gaaaa0sfq8i64sf4vki13.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.tStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,6 @@ import 'package:t_store/common/widget/appbar/custom_appbar.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';
 import 'package:t_store/common/widget/product/product_card_horizontal.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
-import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 

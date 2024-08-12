@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/feature/authentication/screens/singup/component/terms_condition_check.dart';
 import 'package:t_store/feature/authentication/screens/singup/verify_screen/verify_email_screen.dart';
+import 'package:t_store/utils/validators/validation.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../controllers/singup/singup_controller.dart';
 
 class SingUpForm extends StatelessWidget {
   const SingUpForm({
@@ -14,9 +17,9 @@ class SingUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
-
+    final controller = Get.put(SingUpController());
     return Form(
+      key: controller.singUpFormKey,
       child: Column(
         children: [
           /// first & Last Name
@@ -24,6 +27,9 @@ class SingUpForm extends StatelessWidget {
             children: [
               Expanded(
                 child: TextFormField(
+                  controller: controller.fastName,
+                  validator: (value) =>
+                      TValidator.validateEmptyText("First Name", value),
                   expands: false,
                   decoration: const InputDecoration(
                     labelText: TTexts.firstName,
@@ -36,6 +42,9 @@ class SingUpForm extends StatelessWidget {
               ),
               Expanded(
                 child: TextFormField(
+                  controller: controller.lastName,
+                  validator: (value) =>
+                      TValidator.validateEmptyText("Last Name", value),
                   expands: false,
                   decoration: const InputDecoration(
                     labelText: TTexts.lastName,
@@ -51,6 +60,9 @@ class SingUpForm extends StatelessWidget {
 
           ///User Name
           TextFormField(
+            controller: controller.userName,
+            validator: (value) =>
+                TValidator.validateEmptyText("User Name", value),
             decoration: const InputDecoration(
               labelText: TTexts.username,
               prefixIcon: Icon(Iconsax.user_edit),
@@ -62,6 +74,8 @@ class SingUpForm extends StatelessWidget {
 
           ///Email
           TextFormField(
+            controller: controller.email,
+            validator: (value) => TValidator.validateEmail(value),
             decoration: const InputDecoration(
               labelText: TTexts.email,
               prefixIcon: Icon(Iconsax.direct),
@@ -73,6 +87,8 @@ class SingUpForm extends StatelessWidget {
 
           /// Phone Number
           TextFormField(
+            controller: controller.phoneNumber,
+            validator: (value) => TValidator.validatePhoneNumber(value),
             decoration: const InputDecoration(
               labelText: TTexts.phoneNo,
               prefixIcon: Icon(Iconsax.call),
@@ -83,12 +99,19 @@ class SingUpForm extends StatelessWidget {
           ),
 
           /// Password
-          TextFormField(
-            obscureText: true,
-            decoration: const InputDecoration(
-                labelText: TTexts.password,
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash)),
+          Obx(
+            () => TextFormField(
+              controller: controller.password,
+              validator: (value) => TValidator.validatePassword(value),
+              obscureText: controller.hidePassword.value,
+              decoration: InputDecoration(
+                  labelText: TTexts.password,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                      onPressed: () => controller.hidePassword.value =
+                          !controller.hidePassword.value,
+                      icon: Icon(controller.hidePassword.value ? Iconsax.eye_slash : Iconsax.eye))),
+            ),
           ),
           const SizedBox(
             height: TSizes.spaceBtwSections,
@@ -106,7 +129,7 @@ class SingUpForm extends StatelessWidget {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                Get.to(() => const VerifyEmailScreen());
+                controller.singUp();
               },
               child: const Text(
                 TTexts.createAccount,
@@ -118,4 +141,3 @@ class SingUpForm extends StatelessWidget {
     );
   }
 }
-
