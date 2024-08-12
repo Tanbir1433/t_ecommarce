@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widget/appbar/custom_appbar.dart';
 import 'package:t_store/common/widget/appbar/custom_tabbar.dart';
 import 'package:t_store/common/widget/layout/grid_layout.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
+import 'package:t_store/feature/shop/screens/brands/all_brand_screen.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
@@ -66,7 +68,9 @@ class StoreScreen extends StatelessWidget {
                       SectionHeadingText(
                         title: "Feature Brands",
                         showActionButton: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(() => const AllBrandScreen());
+                        },
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,

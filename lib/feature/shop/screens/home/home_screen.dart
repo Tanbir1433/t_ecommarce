@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/feature/shop/screens/all_product/all_product_screen.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import '../../../../common/widget/home_header.dart';
@@ -81,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   /// Heading
-                  SectionHeadingText(title: 'Popular Product',onPressed: (){},),
+                  SectionHeadingText(title: 'Popular Product',onPressed: () => Get.to(() => const AllProductScreen()),),
                   const SizedBox(height: TSizes.spaceBtwItems,),
 
                   /// Popular Product
