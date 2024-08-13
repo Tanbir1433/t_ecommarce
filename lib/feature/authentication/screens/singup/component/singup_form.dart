@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/feature/authentication/screens/singup/component/terms_condition_check.dart';
-import 'package:t_store/feature/authentication/screens/singup/verify_screen/verify_email_screen.dart';
 import 'package:t_store/utils/validators/validation.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
-import '../../../../../utils/helpers/helper_functions.dart';
 import '../../../controllers/singup/singup_controller.dart';
 
 class SingUpForm extends StatelessWidget {
@@ -27,7 +24,7 @@ class SingUpForm extends StatelessWidget {
             children: [
               Expanded(
                 child: TextFormField(
-                  controller: controller.fastName,
+                  controller: controller.firstName,
                   validator: (value) =>
                       TValidator.validateEmptyText("First Name", value),
                   expands: false,
