@@ -1,4 +1,7 @@
-import 'package:t_store/utils/formatters/formatter.dart';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../../../utils/formatters/formatter.dart';
 
 class UserModel {
   final String id;
@@ -22,14 +25,13 @@ class UserModel {
   /// Helper Function to get full name
   String get fullName => '$firstName $lastName';
 
-
   /// Helper Function to Format Phone Number
   String get formattedPhoneNumber => TFormatter.formatPhoneNumber(phoneNumber);
 
   /// Static Function to Split full name into first and last name
   static List<String> nameParts(fullName) => fullName.split(" ");
 
-  static String generateUserName (fullName){
+  static String generateUserName(fullName) {
     List<String> nameParts = fullName.split(" ");
     String firstName = nameParts[0].toLowerCase();
     String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : '';
@@ -39,28 +41,42 @@ class UserModel {
     return userNameWithPrefix;
   }
 
-  static UserModel empty() => UserModel(id: '', firstName: '', lastName: '', userName: '', email: '', phoneNumber: '', profilePicture: '');
+  static UserModel empty() => UserModel(
+      id: '',
+      firstName: '',
+      lastName: '',
+      userName: '',
+      email: '',
+      phoneNumber: '',
+      profilePicture: '');
 
   /// Convert to jason
-  Map<String, dynamic> toJson(){
-    return{
+  Map<String, dynamic> toJson() {
+    return {
       'FirstName': firstName,
-      'LastName':lastName,
-      'UserName':userName,
-      'Email':email,
-      'PhoneNumber':phoneNumber,
-      'ProfilePicture':profilePicture
+      'LastName': lastName,
+      'UserName': userName,
+      'Email': email,
+      'PhoneNumber': phoneNumber,
+      'ProfilePicture': profilePicture,
     };
   }
 
-
   /// Factory methode to create a userModel from a firebase document snapshot
-  /*factory UserModel.fromSnapshot(DocumentSnapshot<Map<String,double>>document){
-    if(document.data() != null){
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    if (document.data() != null) {
       final data = document.data()!;
-      return UserModel(id: document.id, firstName: data['FirstName'] ?? '', lastName: data['LastName'] ?? '', userName: data['UserName'] ?? '', email: data['Email'] ?? '', phoneNumber: data['PhoneNumber'] ?? '', profilePicture: data['ProfilePicture'] ?? '');
+      return UserModel(
+          id: document.id,
+          firstName: data['FirstName'] ?? '',
+          lastName: data['LastName'] ?? '',
+          userName: data['UserName'] ?? '',
+          email: data['Email'] ?? '',
+          phoneNumber: data['PhoneNumber'] ?? '',
+          profilePicture: data['ProfilePicture'] ?? '',
+      );
+    }else{
+      return UserModel.empty();
     }
-  }*/
-
+  }
 }
-

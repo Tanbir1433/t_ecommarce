@@ -15,13 +15,12 @@ class TermsConditionCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
     final controller = SingUpController();
-
     return Row(
       children: [
         SizedBox(
             height: 24,
             width: 24,
-            child: Obx(() => Checkbox(value: controller.privacyPolicy.value, onChanged: (value) => controller.privacyPolicy.value =! controller.privacyPolicy.value))),
+            child: Obx(() => Checkbox(value: controller.privacyPolicy.value, onChanged: (value) => controller.privacyPolicy.value = !controller.privacyPolicy.value))),
         const SizedBox(
           width: TSizes.spaceBtwItems,
         ),

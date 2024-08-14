@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widget/appbar/custom_appbar.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
+import 'package:t_store/feature/personalization/screens/profile/component/change_name_screen.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
+import '../../controllers/user/user_controller.dart';
 import 'component/profile_menu.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,6 +16,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: const CustomAppbar(
         title: Text("Profile"),
@@ -47,8 +51,10 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              ProfileMenu(onPressed: () {  }, title: 'Names', Value: 'Tanbir',),
-              ProfileMenu(onPressed: () {  }, title: 'User Names', Value: 'Tanbir Hossain',),
+              ProfileMenu(onPressed: () {
+                Get.to(() => const ChangeNameScreen());
+              }, title: 'Name', Value: controller.user.value.fullName,),
+              ProfileMenu(onPressed: () {  }, title: 'User Names', Value: controller.user.value.userName,),
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
@@ -60,9 +66,9 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              ProfileMenu(onPressed: () {  }, title: 'User Id',icon: Iconsax.copy, Value: '1234',),
-              ProfileMenu(onPressed: () {  }, title: 'E-mail', Value: 'Tanbir@gmail.com',),
-              ProfileMenu(onPressed: () {  }, title: 'Phone Number', Value: '01909371713',),
+              ProfileMenu(onPressed: () {  }, title: 'User Id',icon: Iconsax.copy, Value: controller.user.value.id,),
+              ProfileMenu(onPressed: () {  }, title: 'E-mail', Value: controller.user.value.email,),
+              ProfileMenu(onPressed: () {  }, title: 'Phone Number', Value: controller.user.value.phoneNumber,),
               ProfileMenu(onPressed: () {  }, title: 'gender', Value: 'Male',),
               ProfileMenu(onPressed: () {  }, title: 'Date Of Birth', Value: '10 Nov 2001',),
               const SizedBox(
@@ -75,7 +81,7 @@ class ProfileScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () => controller.deleteAccountWarningPopUp(),
                   child: const Text("Close Account",style: TextStyle(color: Colors.red),),
                 ),
               )

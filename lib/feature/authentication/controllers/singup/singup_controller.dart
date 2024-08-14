@@ -30,17 +30,20 @@ class SingUpController extends GetxController {
   void singUp() async {
     try {
       /// Loading
-      TFullScreenLoader.openLoadingDialog(
-          "We Are Scanning Your Data....", TImages.animalIcon);
+      TFullScreenLoader.openLoadingDialog("We Are Scanning Your Data....", TImages.docerAnimation);
 
       /// Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        TFullScreenLoader.stopLoading();
         return;
       }
 
       /// Form Validation
-      if (!singUpFormKey.currentState!.validate()) return;
+      if (!singUpFormKey.currentState!.validate()){
+        TFullScreenLoader.stopLoading();
+        return;
+      }
 
       /// PRIVACY POLICY
       if (!privacyPolicy.value) {
@@ -53,9 +56,7 @@ class SingUpController extends GetxController {
       }
 
       /// Register User in Firebase
-      final userCredential = await AuthenticationRepository.instance
-          .registerWithEmailAndPassword(
-              email.text.trim(), password.text.trim());
+      final userCredential = await AuthenticationRepository.instance.registerWithEmailAndPassword(email.text.trim(), password.text.trim());
 
       /// Save user data
       final newUser = UserModel(
@@ -68,11 +69,16 @@ class SingUpController extends GetxController {
         profilePicture: '',
       );
 
+
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);
 
+
+      /// Remove Loader
+      TFullScreenLoader.stopLoading();
+
       TLoaders.successSnackBar(title: 'Congratulation',message: 'Your Account has been Created successfully');
-      
+
       Get.to(() => VerifyEmailScreen(email: email.text.trim()));
 
     } catch (e) {
