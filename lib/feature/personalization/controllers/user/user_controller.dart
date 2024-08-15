@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/feature/authentication/models/user_model.dart';
@@ -20,6 +21,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
 
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   final userRepository = Get.put(UserRepository());
@@ -51,13 +53,17 @@ class UserController extends GetxController {
   /// Save user of any registration
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
-      if (userCredential != null) {
-        /// Convert name
-        final nameParts = UserModel.nameParts(userCredential.user!.displayName ?? '');
-        final userName = UserModel.generateUserName(userCredential.user!.displayName ?? '');
+      /// refresh user record
+      await fetchUserRecorde();
 
-        /// Map data
-        final user = UserModel(
+      if(user.value.id.isEmpty){
+        if (userCredential != null) {
+          /// Convert name
+          final nameParts = UserModel.nameParts(userCredential.user!.displayName ?? '');
+          final userName = UserModel.generateUserName(userCredential.user!.displayName ?? '');
+
+          /// Map data
+          final user = UserModel(
             id: userCredential.user!.uid,
             firstName: nameParts[0],
             lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
@@ -65,9 +71,10 @@ class UserController extends GetxController {
             email: userCredential.user!.email ?? '',
             phoneNumber: userCredential.user!.phoneNumber ?? '',
             profilePicture: userCredential.user!.photoURL ?? '',
-        );
+          );
 
-        await userRepository.saveUserRecord(user);
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       TLoaders.warningSnackBar(
@@ -163,4 +170,33 @@ class UserController extends GetxController {
   }
 
 
+  /// Upload user Profile photo
+  uploadUserProfilePicture() async{
+    try{
+
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery,imageQuality: 70,maxHeight: 512,maxWidth: 512);
+
+      if(image != null){
+
+        imageUploading.value = true;
+        /// Upload Image
+        final imageUrl = await userRepository.uploadImage('Users/Images/Profile/', image);
+
+        /// Update image
+        Map<String,dynamic> json = {'ProfilePicture':imageUrl};
+
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+
+        user.refresh();
+        TLoaders.successSnackBar(title: "Congratulation",message: 'Your Profile Image Has been Uploaded Successfully');
+
+      }
+    }catch(e){
+      TLoaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+    }finally{
+      imageUploading.value = false;
+    }
+  }
 }
