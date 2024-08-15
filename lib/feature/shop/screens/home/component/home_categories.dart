@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/feature/shop/controllers/category_controller.dart';
 import 'package:t_store/feature/shop/screens/sub_categories/sub_categories_screen.dart';
 import 'package:t_store/utils/shimmer/t_category_shimmer.dart';
 import '../../../../../common/widget/text/vertical_image_text.dart';
-import '../../../../../utils/constants/image_strings.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({

@@ -8,7 +8,6 @@ import '../../../../common/widget/layout/grid_layout.dart';
 import '../../../../common/widget/product/product_card_vertical.dart';
 import '../../../../common/widget/search_field/search_filed.dart';
 import '../../../../common/widget/text/section_heading_text.dart';
-import '../../../../utils/constants/image_strings.dart';
 import 'component/banner_slider.dart';
 import 'component/home_appbar.dart';
 import 'component/home_categories.dart';
@@ -71,13 +70,7 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// Banner Slider
-                  const BannerSlider(
-                    banners: [
-                      TImages.promoBanner1,
-                      TImages.promoBanner2,
-                      TImages.promoBanner3,
-                    ],
-                  ),
+                  const BannerSlider(),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
