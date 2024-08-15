@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widget/appbar/custom_appbar.dart';
 import 'package:t_store/common/widget/layout/grid_layout.dart';
 import 'package:t_store/common/widget/product/product_card_vertical.dart';
+import 'package:t_store/feature/shop/model/product_model.dart';
 import 'package:t_store/feature/shop/screens/home/home_screen.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -34,7 +35,7 @@ class WishlistScreen extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              GridLayout(itemCount: 10, itemBuilder: (_,index) => const ProductCardVertical())
+              GridLayout(itemCount: 10, itemBuilder: (_,index) => ProductCardVertical(product: ProductModel.empty(),))
             ],
           ),
         ),

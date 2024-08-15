@@ -5,6 +5,7 @@ import 'package:t_store/feature/shop/screens/product_review/product_review_scree
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 import 'package:readmore/readmore.dart';
+import '../../model/product_model.dart';
 import 'component/bottom_add_to_cart.dart';
 import 'component/product_attribute.dart';
 import 'component/product_image_slider.dart';
@@ -12,8 +13,9 @@ import 'component/product_meta_data.dart';
 import 'component/rating_and_share.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({super.key});
+  const ProductDetailScreen({super.key, required this.product});
 
+  final ProductModel product;
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);

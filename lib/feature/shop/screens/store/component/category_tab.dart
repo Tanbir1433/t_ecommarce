@@ -4,6 +4,7 @@ import 'package:t_store/common/widget/layout/grid_layout.dart';
 import 'package:t_store/common/widget/product/product_card_vertical.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
 import 'package:t_store/feature/shop/model/categorie_model.dart';
+import 'package:t_store/feature/shop/model/product_model.dart';
 
 import '../../../../../common/widget/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
@@ -44,7 +45,7 @@ class CategoryTab extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              GridLayout(itemCount: 4, itemBuilder: (_,index)=>const ProductCardVertical()),
+              GridLayout(itemCount: 4, itemBuilder: (_,index)=>ProductCardVertical(product: ProductModel.empty(),)),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
