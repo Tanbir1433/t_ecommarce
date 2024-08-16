@@ -3,6 +3,7 @@ import 'package:t_store/common/widget/image/circular_image.dart';
 import 'package:t_store/common/widget/text/brand_title_verify_icon.dart';
 import 'package:t_store/common/widget/text/product_price_text.dart';
 import 'package:t_store/common/widget/text/product_title_text.dart';
+import 'package:t_store/feature/shop/controllers/product/product_controller.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
@@ -10,15 +11,19 @@ import '../../../../../common/widget/circular_shape.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import '../../../model/product_model.dart';
 
 class ProductMetaData extends StatelessWidget {
   const ProductMetaData({
-    super.key,
+    super.key, required this.product,
   });
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,7 +41,7 @@ class ProductMetaData extends StatelessWidget {
                 backgroundColor: TColors.secondary.withOpacity(0.8),
                 child: Center(
                   child: Text(
-                    "15%",
+                    "$salePercentage%",
                     style: Theme.of(context).textTheme.labelLarge!.apply(
                       color: TColors.black,
                     ),
@@ -49,23 +54,25 @@ class ProductMetaData extends StatelessWidget {
             ),
 
             /// Price
-            Text(
-              "\$150",
-              style: Theme.of(context).textTheme.titleSmall!.apply(
-                decoration: TextDecoration.lineThrough
+            if(product.productType == ProductType.single.toString() && product.salePrice > 0)
+              Text(
+                "\$${product.price}",
+                style: Theme.of(context).textTheme.titleSmall!.apply(
+                    decoration: TextDecoration.lineThrough
+                ),
               ),
-            ),
-            const SizedBox(
+
+            if(product.productType == ProductType.single.toString() && product.salePrice > 0) const SizedBox(
               width: TSizes.spaceBtwItems,
             ),
-            const ProductPriceText(price: '120',isLarge: true,)
+            ProductPriceText(price: controller.getProductPrice(product),isLarge: true,)
           ],
         ),
         const SizedBox(
           height: TSizes.spaceBtwItems / 1.5,
         ),
         /// Title
-        const ProductTitleText(text: 'Green Nike Sports Shirt'),
+        ProductTitleText(text: product.title),
         const SizedBox(
           height: TSizes.spaceBtwItems / 1.5,
         ),
@@ -77,7 +84,7 @@ class ProductMetaData extends StatelessWidget {
             const SizedBox(
               width: TSizes.spaceBtwItems,
             ),
-            Text('In Stock',style: Theme.of(context).textTheme.titleMedium,),
+            Text(controller.getProductStockStatus(product.stock),style: Theme.of(context).textTheme.titleMedium,),
           ],
         ),
         const SizedBox(
@@ -87,8 +94,8 @@ class ProductMetaData extends StatelessWidget {
         /// Brand
         Row(
           children: [
-            CircularImage(image: TImages.cosmeticsIcon,width: 32,height: 32,overlayColor: dark ? TColors.white : TColors.black,),
-            const BrandTitleWithVerifyIcon(title: "Nike",brandTextSizes: TextSizes.medium,),
+            CircularImage(image: product.brand != null ? product.brand!.image : '',width: 32,height: 32,overlayColor: dark ? TColors.white : TColors.black,),
+            BrandTitleWithVerifyIcon(title: product.brand != null ? product.brand!.name : '',brandTextSizes: TextSizes.medium,),
           ],
         )
       ],

@@ -49,7 +49,7 @@ class CircularImage extends StatelessWidget {
             padding: EdgeInsets.all(padding),
             child: isNetworkImage?
             ClipRRect(
-              borderRadius: BorderRadius.circular(100),
+              borderRadius: BorderRadius.circular(borderRadius),
               child: CachedNetworkImage(
                 fit: fit,
                   color: overlayColor,

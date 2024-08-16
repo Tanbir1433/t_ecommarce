@@ -42,7 +42,7 @@ class ProfileScreen extends StatelessWidget {
 
                         return controller.imageUploading.value
                             ? const TShimmerEffect(width: 80, height: 80,radius: 80,)
-                            : CircularImage(image: image, width: 80, height: 80,isNetworkImage: networkImage.isNotEmpty);
+                            : CircularImage(image: image, width: 80, height: 80,isNetworkImage: networkImage.isNotEmpty,borderRadius: 80,);
                       }),
                       TextButton(onPressed: () =>
                           controller.uploadUserProfilePicture(),

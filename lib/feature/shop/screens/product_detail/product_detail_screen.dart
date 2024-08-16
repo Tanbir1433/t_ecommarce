@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
+import 'package:t_store/feature/shop/controllers/product/image_controller.dart';
 import 'package:t_store/feature/shop/screens/product_review/product_review_screen.dart';
+import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
-import 'package:t_store/utils/helpers/helper_functions.dart';
 import 'package:readmore/readmore.dart';
 import '../../model/product_model.dart';
 import 'component/bottom_add_to_cart.dart';
@@ -16,15 +17,15 @@ class ProductDetailScreen extends StatelessWidget {
   const ProductDetailScreen({super.key, required this.product});
 
   final ProductModel product;
+
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// Product Image Slider
-            const ProductImageSlider(),
+            ProductImageSlider(product: product),
 
             /// Product Details
             SizedBox(
@@ -37,13 +38,11 @@ class ProductDetailScreen extends StatelessWidget {
                     const RatingAndShare(),
 
                     /// price, Title, Stock, & Brand
-                    const ProductMetaData(),
+                    ProductMetaData(product: product,),
 
                     /// Attributes
-                    const ProductAttributes(),
-                    const SizedBox(
-                      height: TSizes.spaceBtwItems,
-                    ),
+                    if(product.productType == ProductType.variable.toString()) ProductAttributes(product: product),
+                    if(product.productType == ProductType.variable.toString()) const SizedBox(height: TSizes.spaceBtwItems),
 
                     /// Check Out Button
                     SizedBox(
@@ -58,14 +57,14 @@ class ProductDetailScreen extends StatelessWidget {
                     const SizedBox(
                       height: TSizes.spaceBtwItems,
                     ),
-                    const ReadMoreText(
-                      'A product description is a form of marketing copy used to describe and explain the benefits of your product. In other words, it provides all the information and details of your product on your ecommerce site. These product details can be one sentence, a short paragraph or bulleted. They can be serious, funny or quirky.',
+                    ReadMoreText(
+                      product.description ?? '',
                       trimLines: 2,
                       trimMode: TrimMode.Line,
                       trimCollapsedText: "SHow More",
                       trimExpandedText: 'Show Less',
-                      moreStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
-                      lessStyle: TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
+                      moreStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
+                      lessStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.w800),
                     ),
 
 

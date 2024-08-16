@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/style/shadow.dart';
 import 'package:t_store/common/widget/circular_shape.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';
-import 'package:t_store/feature/shop/controllers/product_controller.dart';
+import 'package:t_store/feature/shop/controllers/product/product_controller.dart';
 import 'package:t_store/feature/shop/model/product_model.dart';
 import 'package:t_store/feature/shop/screens/product_detail/product_detail_screen.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -25,12 +25,15 @@ class ProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage =
+        controller.calculateSalePercentage(product.price, product.salePrice);
     final dark = THelperFunctions.isDarkMode(context);
 
     return GestureDetector(
-      onTap: (){
-        Get.to(() => ProductDetailScreen(product: product,));
+      onTap: () {
+        Get.to(() => ProductDetailScreen(
+              product: product,
+            ));
       },
       child: Container(
         width: 180,
@@ -53,7 +56,14 @@ class ProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   /// Thumbnail Image
-                  Center(child: CircularImage(image: product.thumbnail,isNetworkImage: true,)),
+                  Center(
+                      child: CircularImage(
+                    image: product.thumbnail,
+                    isNetworkImage: true,
+                    height: double.infinity,
+                    width: double.infinity,
+                    borderRadius: 12,
+                  )),
 
                   /// Sale tag
                   Positioned(
@@ -94,6 +104,7 @@ class ProductCardVertical extends StatelessWidget {
             const SizedBox(
               height: TSizes.spaceBtwItems / 2,
             ),
+
             /// Detail
             Padding(
               padding: const EdgeInsets.only(left: TSizes.sm),
@@ -102,11 +113,16 @@ class ProductCardVertical extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    ProductTitleText(text: product.title,smallSize: true,),
+                    ProductTitleText(
+                      text: product.title,
+                      smallSize: true,
+                    ),
                     const SizedBox(
                       height: TSizes.spaceBtwItems / 2,
                     ),
-                    BrandTitleWithVerifyIcon(title: product.brand!.name,),
+                    BrandTitleWithVerifyIcon(
+                      title: product.brand!.name,
+                    ),
                   ],
                 ),
               ),
@@ -129,12 +145,12 @@ class ProductCardVertical extends StatelessWidget {
                             style: Theme.of(context).textTheme.labelMedium!.apply(decoration: TextDecoration.lineThrough),
                           ),
                         ),
+
                       /// Price
                       Padding(
                         padding: const EdgeInsets.only(left: TSizes.sm),
                         child: ProductPriceText(price: controller.getProductPrice(product)),
                       ),
-                  
                     ],
                   ),
                 ),
@@ -144,16 +160,17 @@ class ProductCardVertical extends StatelessWidget {
                   color: TColors.dark,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(TSizes.cardRadiusMd),
-                      bottomRight: Radius.circular(TSizes.productImageRadius)
-                  ),
+                      bottomRight: Radius.circular(TSizes.productImageRadius)),
                   child: SizedBox(
                       height: TSizes.iconLg * 1.2,
                       width: TSizes.iconLg * 1.2,
-                      child: Icon(Iconsax.add,color: TColors.white,)),
+                      child: Icon(
+                        Iconsax.add,
+                        color: TColors.white,
+                      )),
                 )
               ],
             )
-
           ],
         ),
       ),

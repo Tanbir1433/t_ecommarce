@@ -2,8 +2,8 @@ import 'package:get/get.dart';
 import 'package:t_store/feature/shop/model/product_model.dart';
 import 'package:t_store/utils/popups/loaders.dart';
 
-import '../../../data/repositories/product/product_repository.dart';
-import '../../../utils/constants/enums.dart';
+import '../../../../data/repositories/product/product_repository.dart';
+import '../../../../utils/constants/enums.dart';
 
 class ProductController extends GetxController{
   static ProductController get instance => Get.find();
@@ -48,6 +48,7 @@ class ProductController extends GetxController{
 
   /// Get Product Price
   String getProductPrice(ProductModel product){
+
     double smallPrice = double.infinity;
     double largestPrice = 0.0;
 

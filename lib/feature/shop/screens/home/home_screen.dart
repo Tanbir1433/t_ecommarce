@@ -9,7 +9,7 @@ import '../../../../common/widget/layout/grid_layout.dart';
 import '../../../../common/widget/product/product_card_vertical.dart';
 import '../../../../common/widget/search_field/search_filed.dart';
 import '../../../../common/widget/text/section_heading_text.dart';
-import '../../controllers/product_controller.dart';
+import '../../controllers/product/product_controller.dart';
 import 'component/banner_slider.dart';
 import 'component/home_appbar.dart';
 import 'component/home_categories.dart';
