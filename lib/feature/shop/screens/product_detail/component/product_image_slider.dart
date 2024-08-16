@@ -44,7 +44,7 @@ class ProductImageSlider extends StatelessWidget {
                     onTap: () => controller.showEnlargedImage(image),
                     child: CachedNetworkImage(
                       fit: BoxFit.contain,
-                      imageUrl: image,
+                      imageUrl: image ?? '',
                       progressIndicatorBuilder: (_, __, downloadProgress) =>
                           CircularProgressIndicator(value: downloadProgress.progress, color: TColors.primary),
                     ),

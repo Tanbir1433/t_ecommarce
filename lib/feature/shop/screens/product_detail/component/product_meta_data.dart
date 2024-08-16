@@ -5,7 +5,6 @@ import 'package:t_store/common/widget/text/product_price_text.dart';
 import 'package:t_store/common/widget/text/product_title_text.dart';
 import 'package:t_store/feature/shop/controllers/product/product_controller.dart';
 import 'package:t_store/utils/constants/enums.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 
 import '../../../../../common/widget/circular_shape.dart';
 import '../../../../../utils/constants/colors.dart';

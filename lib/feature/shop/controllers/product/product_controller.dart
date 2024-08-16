@@ -10,6 +10,7 @@ class ProductController extends GetxController{
 
 
   final isLoading = false.obs;
+  final bannerRepo = Get.put(ProductRepository());
   final RxList<ProductModel> featuredProducts = <ProductModel>[].obs;
 
 
@@ -19,6 +20,7 @@ class ProductController extends GetxController{
     super.onInit();
   }
 
+  /// Get Featured Product
   Future<void> fetchFeaturedProducts() async{
     try{
 
@@ -26,14 +28,11 @@ class ProductController extends GetxController{
       isLoading.value = true;
 
       /// Fetch Feature Product Data Source
-      final bannerRepo = Get.put(ProductRepository());
+
       final products = await bannerRepo.getFeaturedProducts();
 
-      /// Assigned Banners
+      /// Assigned Feature Product
       featuredProducts.assignAll(products);
-
-      /// Filter feature Category
-
 
     }catch(e){
       TLoaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
@@ -42,8 +41,20 @@ class ProductController extends GetxController{
     }
   }
 
-  /// Get Featured Product
 
+
+  /// Get All Featured Product
+  Future<List<ProductModel>> fetchAllFeaturedProducts() async{
+    try{
+      /// Fetch Product
+      final products = await bannerRepo.getAllFeaturedProducts();
+      return products;
+
+    }catch(e){
+      TLoaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+      return [];
+    }
+  }
 
 
   /// Get Product Price

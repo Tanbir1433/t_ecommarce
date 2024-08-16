@@ -53,7 +53,7 @@ class CircularImage extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: fit,
                   color: overlayColor,
-                  imageUrl: image,
+                  imageUrl: image ?? '',
                 progressIndicatorBuilder: (context, url, downloadProgress) => const TShimmerEffect(width: 55, height: 55,radius: 55,),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),

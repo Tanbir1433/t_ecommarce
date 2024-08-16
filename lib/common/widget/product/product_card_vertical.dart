@@ -66,7 +66,8 @@ class ProductCardVertical extends StatelessWidget {
                   )),
 
                   /// Sale tag
-                  Positioned(
+                  if(salePercentage != null)
+                    Positioned(
                     top: 12,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(

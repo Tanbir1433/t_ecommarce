@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:t_store/common/widget/text/section_heading_text.dart';
-import 'package:t_store/feature/shop/controllers/product/image_controller.dart';
 import 'package:t_store/feature/shop/screens/product_review/product_review_screen.dart';
 import 'package:t_store/utils/constants/enums.dart';
 import 'package:t_store/utils/constants/sizes.dart';
