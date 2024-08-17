@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';
+import 'package:t_store/common/widget/product/favourite_icon/favourite_icon.dart';
 import 'package:t_store/common/widget/text/brand_title_verify_icon.dart';
 import 'package:t_store/common/widget/text/product_price_text.dart';
 import 'package:t_store/common/widget/text/product_title_text.dart';
@@ -10,7 +11,6 @@ import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper_functions.dart';
 import '../circular_shape.dart';
-import '../icon/circular_icon.dart';
 
 class ProductCardHorizontal extends StatelessWidget {
   const ProductCardHorizontal({super.key});
@@ -69,10 +69,7 @@ class ProductCardHorizontal extends StatelessWidget {
                     const Positioned(
                       top: 0,
                       right: 0,
-                      child: CircularIcon(
-                        icon: Iconsax.heart5,
-                        iconColor: Colors.red,
-                      ),
+                      child: FavouriteIcon(productId: '',),
                     ),
 
                   ],
