@@ -112,15 +112,12 @@ class StoreScreen extends StatelessWidget {
 
                 /// Tabs View
                 bottom: CustomTabBar(
-                  tabs: categories.map((category) =>
-                      Tab(child: Text(category.name))).toList(),
+                  tabs: categories.map((category) => Tab(child: Text(category.name))).toList(),
                 ),
               ),
             ];
           },
-          body: TabBarView(
-            children: categories.map((category) =>
-                CategoryTab(category: category)).toList(),
+          body: TabBarView(children: categories.map((category) => CategoryTab(category: category)).toList(),
           ),
         ),
       ),

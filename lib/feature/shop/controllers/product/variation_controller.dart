@@ -13,8 +13,7 @@ class VariationController extends GetxController {
       ProductVariationModel.empty().obs;
 
   /// Selected Attribute & Value
-  void onAttributeSelected(
-      ProductModel product, attributeName, attributeValue) {
+  void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
     final selectedAttributes =
         Map<String, dynamic>.from(this.selectedAttributes);
     selectedAttributes[attributeName] = attributeValue;

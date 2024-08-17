@@ -12,6 +12,7 @@ class BrandRepository extends GetxController{
 
   final _db = FirebaseFirestore.instance;
 
+  /// Get All Brand
   Future<List<BrandModel>> getAllBrands() async{
     try{
       final snapshot = await _db.collection('Brands').get();
@@ -29,5 +30,29 @@ class BrandRepository extends GetxController{
     }
   }
 
+  /// Get All Brand For Category
+  Future<List<BrandModel>> getBrandsForCategory(String categoryId) async{
+    try{
+      QuerySnapshot brandCategoryQuery = await _db.collection('BrandCategory').where('CategoryId',isEqualTo: categoryId).get();
+
+      List<String> brandIds = brandCategoryQuery.docs.map((doc) => doc['BrandId'] as String).toList();
+
+      final brandsQuery = await _db.collection('Brands').where(FieldPath.documentId,whereIn: brandIds).limit(2).get();
+
+      List<BrandModel> brands = brandsQuery.docs.map((doc) => BrandModel.fromSnapshot(doc)).toList();
+
+      return brands;
+
+
+    }on FirebaseException catch (e){
+      throw TFirebaseException(e.code).message;
+    }on FormatException catch(_){
+      throw const TFormatException();
+    } on PlatformException catch(e){
+      throw TPlatformException(e.code).message;
+    }catch(e){
+      throw 'Something Went Wrong, Please try again';
+    }
+  }
 
 }

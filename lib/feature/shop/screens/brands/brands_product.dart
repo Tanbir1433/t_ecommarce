@@ -34,7 +34,7 @@ class BrandsProduct extends StatelessWidget {
               ),
 
               FutureBuilder(
-                future: controller.getBrandsProduct(brand.id),
+                future: controller.getBrandsProduct(brandId: brand.id),
                 builder: (context, snapshot) {
 
                   /// Handel Loader
