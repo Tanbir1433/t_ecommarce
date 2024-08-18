@@ -38,7 +38,7 @@ class VerticalImageText extends StatelessWidget {
               padding: TSizes.sm * 1.4,
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
-              overlayColor: dark ? TColors.light : TColors.dark,
+              //overlayColor: dark ? TColors.light : TColors.dark,
             ),
             const SizedBox(
               height: TSizes.spaceBtwItems / 2,

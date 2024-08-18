@@ -19,20 +19,15 @@ class CircularIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 20,
-      backgroundColor: backgroundColor != null
-          ? backgroundColor!
-          : THelperFunctions.isDarkMode(context)
-          ? TColors.black.withOpacity(0.9)
-          : TColors.white.withOpacity(0.9),
-      child: IconButton(
-        onPressed: onPressed,
-        icon: Icon(
-          icon,
-          size: size,
-          color: iconColor,
-        ),
+    return IconButton(
+      style: IconButton.styleFrom(
+        backgroundColor: backgroundColor != null ? backgroundColor! : THelperFunctions.isDarkMode(context) ? TColors.black.withOpacity(0.9) : TColors.white.withOpacity(0.9),
+      ),
+      onPressed: onPressed,
+      icon: Icon(
+        icon,
+        size: size,
+        color: iconColor,
       ),
     );
   }
