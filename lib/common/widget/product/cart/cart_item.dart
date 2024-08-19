@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:t_store/feature/shop/model/cart_item_model.dart';
 
 import '../../../../utils/constants/colors.dart';
-import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/sizes.dart';
 import '../../../../utils/helpers/helper_functions.dart';
 import '../../image/circular_image.dart';

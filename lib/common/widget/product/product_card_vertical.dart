@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/style/shadow.dart';
 import 'package:t_store/common/widget/circular_shape.dart';
 import 'package:t_store/common/widget/image/circular_image.dart';

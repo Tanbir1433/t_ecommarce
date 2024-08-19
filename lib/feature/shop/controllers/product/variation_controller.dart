@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:t_store/common/widget/product/cart/cart_counter.dart';
 import 'package:t_store/feature/shop/controllers/product/cart_item_controller.dart';
 import 'package:t_store/feature/shop/controllers/product/image_controller.dart';
 import 'package:t_store/feature/shop/model/product_model.dart';

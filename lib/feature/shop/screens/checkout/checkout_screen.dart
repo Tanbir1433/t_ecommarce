@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:t_store/common/widget/sucess_screen/sucess_screen.dart';
+import 'package:t_store/feature/shop/controllers/product/cart_item_controller.dart';
+import 'package:t_store/feature/shop/controllers/product/order_controller.dart';
 import 'package:t_store/feature/shop/screens/cart/component/all_cart_items.dart';
 import 'package:t_store/feature/shop/screens/checkout/component/billing_address_method.dart';
 import 'package:t_store/feature/shop/screens/checkout/component/billing_payment_method.dart';
 import 'package:t_store/feature/shop/screens/checkout/component/billing_amount_method.dart';
-import 'package:t_store/navigation_menu_bar.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
+import 'package:t_store/utils/helpers/pricing_calculator.dart';
+import 'package:t_store/utils/popups/loaders.dart';
 
 import '../../../../common/widget/appbar/custom_appbar.dart';
 import '../../../../common/widget/product/coupon/coupon_code.dart';
@@ -20,6 +21,10 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
+    final cartController = CartItemController.instance;
+    final subTotal = cartController.totalCartPrice.value;
+    final orderController = Get.put(OrderController());
+    final totalAmount = TPricingCalculator.calculateTotalPrice(subTotal, 'US');
     return Scaffold(
       appBar: CustomAppbar(
         showBackArrow: true,
@@ -32,9 +37,7 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             children: [
               /// Items in Cart
-              const AllCartItems(
-                showAddRemoveButton: false,
-              ),
+              const AllCartItems(showAddRemoveButton: false,),
               const SizedBox(
                 height: TSizes.spaceBtwSections,
               ),
@@ -90,17 +93,10 @@ class CheckoutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
         child: ElevatedButton(
-          onPressed: () {
-            Get.to(
-              () => SuccessScreen(
-                image: TImages.successfulPaymentIcon,
-                title: 'Payment Success!',
-                subTitle: 'Your Item Will be Shipped Soon',
-                onPressed: () => Get.offAll(() => const NavigationMenuBar()),
-              ),
-            );
-          },
-          child: const Text("CheckOut \$34.0"),
+          onPressed: subTotal > 0
+              ? () => orderController.processOrder(totalAmount)
+              : () => TLoaders.warningSnackBar(title: "Empty card",message: 'Add Items in the Cart in order to proceed'),
+          child: Text("CheckOut \$$totalAmount"),
         ),
       ),
     );
