@@ -82,8 +82,9 @@ class ProductCardHorizontal extends StatelessWidget {
           SizedBox(
             width: 172,
             child: Padding(
-              padding: EdgeInsets.only(top: TSizes.sm,left: TSizes.sm),
+              padding: const EdgeInsets.only(top: TSizes.sm,left: TSizes.sm),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

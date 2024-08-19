@@ -10,18 +10,20 @@ class CircularIcon extends StatelessWidget {
     this.backgroundColor,
     this.iconColor,
     this.size = TSizes.lg,
-    required this.icon,
+    required this.icon, this.border,
   });
   final VoidCallback? onPressed;
   final Color? backgroundColor, iconColor;
   final double? size;
   final IconData icon;
+  final BorderSide? border;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       style: IconButton.styleFrom(
         backgroundColor: backgroundColor != null ? backgroundColor! : THelperFunctions.isDarkMode(context) ? TColors.black.withOpacity(0.9) : TColors.white.withOpacity(0.9),
+        side: border,
       ),
       onPressed: onPressed,
       icon: Icon(

@@ -90,7 +90,8 @@ class SubCategoriesScreen extends StatelessWidget {
                                   ),
                                   itemBuilder: (_, index) => ProductCardHorizontal(product: products[index]),
                                 ),
-                              )
+                              ),
+                              const SizedBox(height: TSizes.spaceBtwSections,),
                             ],
                           );
                         }

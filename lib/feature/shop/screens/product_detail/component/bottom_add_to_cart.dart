@@ -28,16 +28,17 @@ class BottomAddToCart extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircularIcon(
+                CircularIcon(
                   icon: Iconsax.minus,
-                  backgroundColor: TColors.darkGrey,
-                  iconColor: TColors.white,
+                  backgroundColor: THelperFunctions.isDarkMode(context) ? TColors.black.withOpacity(0.9) : TColors.white.withOpacity(0.9),
+                  iconColor: TColors.black,
+                  border: const BorderSide(color: TColors.black),
                 ),
                 const SizedBox(
                   width: TSizes.spaceBtwItems,
                 ),
                 Text(
-                  '2',
+                  '3',
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
                 const SizedBox(
@@ -45,8 +46,8 @@ class BottomAddToCart extends StatelessWidget {
                 ),
                 const CircularIcon(
                   icon: Iconsax.add,
-                  backgroundColor: TColors.primary,
-                  iconColor: TColors.white,
+                  iconColor: TColors.black,
+                  border: BorderSide(color: TColors.black),
                 ),
               ],
             ),
