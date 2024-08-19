@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:t_store/feature/shop/model/cart_item_model.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
@@ -12,8 +12,9 @@ import '../../text/product_title_text.dart';
 class CartItem extends StatelessWidget {
   const CartItem({
     super.key,
-
+    required this.cartItem,
   });
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +23,16 @@ class CartItem extends StatelessWidget {
       children: [
         /// Image
         CircularImage(
-          image: TImages.productImage1,
+          image: cartItem.image ?? '',
           width: 60,
           height: 60,
           padding: TSizes.sm,
           backgroundColor: dark ? TColors.darkerGrey : TColors.light,
+          isNetworkImage: true,
         ),
-        const SizedBox(width: TSizes.spaceBtwItems,),
+        const SizedBox(
+          width: TSizes.spaceBtwItems,
+        ),
 
         /// Title, Price & Size
         Expanded(
@@ -36,28 +40,22 @@ class CartItem extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const BrandTitleWithVerifyIcon(title: 'Nike'),
-              const Flexible(child: ProductTitleText(text: 'Black Sport Shoes',maxLine: 1,)),
+              BrandTitleWithVerifyIcon(title: cartItem.brandName ?? ''),
+              Flexible(
+                  child: ProductTitleText(
+                text: cartItem.title,
+                maxLine: 1,
+              )),
 
               /// Attribute
-              Text.rich(
-                  TextSpan(
-                      children: [
-                        TextSpan(
-                            text: 'Color ',style: Theme.of(context).textTheme.bodySmall
-                        ),
-                        TextSpan(
-                            text: 'Green ',style: Theme.of(context).textTheme.bodyLarge
-                        ),
-                        TextSpan(
-                            text: 'Size ',style: Theme.of(context).textTheme.bodySmall
-                        ),
-                        TextSpan(
-                            text: 'Uk 08 ',style: Theme.of(context).textTheme.bodyLarge
-                        ),
-                      ]
-                  )
-              )
+              Text.rich(TextSpan(
+                  children: (cartItem.selectedVariation ?? {})
+                      .entries
+                      .map((e) => TextSpan(children: [
+                            TextSpan(text: e.key, style: Theme.of(context).textTheme.bodySmall),
+                            TextSpan(text: e.value, style: Theme.of(context).textTheme.bodyLarge),
+                          ]))
+                      .toList()))
             ],
           ),
         )

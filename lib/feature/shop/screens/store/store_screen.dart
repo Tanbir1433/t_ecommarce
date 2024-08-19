@@ -38,10 +38,8 @@ class StoreScreen extends StatelessWidget {
                 .textTheme
                 .headlineMedium,
           ),
-          actions: [
-            CartCounter(
-              onPressed: () {},
-            )
+          actions: const [
+            CartCounter()
           ],
         ),
         body: NestedScrollView(

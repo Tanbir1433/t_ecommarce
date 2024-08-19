@@ -6,7 +6,6 @@ import 'package:t_store/common/widget/text/brand_title_verify_icon.dart';
 import 'package:t_store/common/widget/text/product_price_text.dart';
 import 'package:t_store/common/widget/text/product_title_text.dart';
 import 'package:t_store/feature/shop/model/product_model.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
 
 import '../../../feature/shop/controllers/product/product_controller.dart';
 import '../../../utils/constants/colors.dart';

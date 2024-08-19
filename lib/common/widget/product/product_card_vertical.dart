@@ -16,6 +16,7 @@ import 'package:t_store/utils/helpers/helper_functions.dart';
 import '../text/brand_title_verify_icon.dart';
 import '../text/product_price_text.dart';
 import '../text/product_title_text.dart';
+import 'cart/product_add_to_cart_button.dart';
 
 class ProductCardVertical extends StatelessWidget {
   const ProductCardVertical({super.key, required this.product});
@@ -154,19 +155,7 @@ class ProductCardVertical extends StatelessWidget {
                 ),
 
                 /// Add To Cart Button
-                const Material(
-                  color: TColors.dark,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(TSizes.cardRadiusMd),
-                      bottomRight: Radius.circular(TSizes.productImageRadius)),
-                  child: SizedBox(
-                      height: TSizes.iconLg * 1.2,
-                      width: TSizes.iconLg * 1.2,
-                      child: Icon(
-                        Iconsax.add,
-                        color: TColors.white,
-                      )),
-                )
+                ProductCartAdToCartButton(product: product)
               ],
             )
           ],
