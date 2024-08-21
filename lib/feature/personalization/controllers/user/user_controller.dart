@@ -7,6 +7,7 @@ import 'package:t_store/data/repositories/user/user_repository.dart';
 import 'package:t_store/feature/authentication/models/user_model.dart';
 import 'package:t_store/feature/authentication/screens/login/login_screen.dart';
 import 'package:t_store/feature/personalization/screens/profile/component/re_autthenticate_user_login_form.dart';
+import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/popups/full_screen_loader.dart';
@@ -199,4 +200,52 @@ class UserController extends GetxController {
       imageUploading.value = false;
     }
   }
+
+
+  /// Logout account warning
+  void logOutAccountWarningPopUp(){
+    Get.defaultDialog(
+        contentPadding: const EdgeInsets.all(TSizes.md),
+        title: "Logout Account",
+        middleText: 'Are you sure You want to Logout your account ?',
+        confirm: ElevatedButton(
+          onPressed: () async => logoutUserAccount(),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: TColors.primary,
+              side: const BorderSide(color: Colors.red)
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+            child: Text("Logout"),
+          ),
+        ),
+        cancel: OutlinedButton(
+          onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+          child: const Text("Cancel"),
+        )
+    );
+  }
+
+  /// Logout User account
+  void logoutUserAccount() async{
+    try{
+
+      TFullScreenLoader.openLoadingDialog('Processing', TImages.docerAnimation);
+
+      /// first re-authentic user
+      final auth = FirebaseAuth.instance;
+      auth.signOut();
+
+      TLoaders.successSnackBar(title: 'Successfully Logout');
+
+      TFullScreenLoader.stopLoading();
+
+      Get.offAll(() => const LoginScreen());
+    }catch(e){
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Oh Snap!',message: e.toString());
+    }
+  }
+
+
 }

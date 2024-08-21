@@ -12,12 +12,14 @@ import 'package:t_store/utils/constants/sizes.dart';
 
 import '../../../../common/widget/list_tile/settings_menu_tile.dart';
 import '../../../../common/widget/user_profile/user_profile.dart';
+import '../../controllers/user/user_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -37,11 +39,12 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
 
-
                   /// User Profile Card
-                  UserProfile(onTap: () {
-                    Get.to(() => const ProfileScreen());
-                  },),
+                  UserProfile(
+                    onTap: () {
+                      Get.to(() => const ProfileScreen());
+                    },
+                  ),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -55,28 +58,107 @@ class SettingsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// Account Settings
-                  const SectionHeadingText(title: "Account Settings",showActionButton: false,),
-                  const SizedBox(height: TSizes.spaceBtwItems,),
-                  SettingsMenuTile(icon: Iconsax.safe_home, title: 'My Address', subTitle: "Set Shopping Delivery Address", onTap: (){Get.to(() => const AddressScreen());},),
-                  SettingsMenuTile(icon: Iconsax.shopping_cart, title: 'My Cart', subTitle: "Add Remove Products And Move to CheckOut", onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.bag_tick, title: 'My Orders', subTitle: "In-Progress and Complete Order", onTap: (){Get.to(() => const OrderScreen()); },),
-                  SettingsMenuTile(icon: Iconsax.bank, title: 'Bank Account', subTitle: "Withdraw Balance to Registered Bank Account", onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.discount_shape, title: 'My Coupons', subTitle: "List All Off the Discount Coupons", onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.notification, title: 'Notification', subTitle: "Set Any kind of Notification Message", onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.security_card, title: 'Account Privacy', subTitle: "Manage data Usage and Connected Accounts", onTap: (){},),
+                  const SectionHeadingText(
+                    title: "Account Settings",
+                    showActionButton: false,
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.safe_home,
+                    title: 'My Address',
+                    subTitle: "Set Shopping Delivery Address",
+                    onTap: () {
+                      Get.to(() => const AddressScreen());
+                    },
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.shopping_cart,
+                    title: 'My Cart',
+                    subTitle: "Add Remove Products And Move to CheckOut",
+                    onTap: () {},
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.bag_tick,
+                    title: 'My Orders',
+                    subTitle: "In-Progress and Complete Order",
+                    onTap: () {
+                      Get.to(() => const OrderScreen());
+                    },
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.bank,
+                    title: 'Bank Account',
+                    subTitle: "Withdraw Balance to Registered Bank Account",
+                    onTap: () {},
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.discount_shape,
+                    title: 'My Coupons',
+                    subTitle: "List All Off the Discount Coupons",
+                    onTap: () {},
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.notification,
+                    title: 'Notification',
+                    subTitle: "Set Any kind of Notification Message",
+                    onTap: () {},
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.security_card,
+                    title: 'Account Privacy',
+                    subTitle: "Manage data Usage and Connected Accounts",
+                    onTap: () {},
+                  ),
 
                   /// App Settings
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
-                  const SectionHeadingText(title: "App Settings",showActionButton: false,),
+                  const SectionHeadingText(
+                    title: "App Settings",
+                    showActionButton: false,
+                  ),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  SettingsMenuTile(icon: Iconsax.document_upload, title: 'Load Data', subTitle: "Upload data to Your Cloud Firebase", onTap: (){},),
-                  SettingsMenuTile(icon: Iconsax.location, title: 'GeoLocation', subTitle: "Set Recommendation Based on Location", onTap: (){},trailing: Switch(value: true,onChanged: (vale){},),),
-                  SettingsMenuTile(icon: Iconsax.security_user, title: 'Safe Mode', subTitle: "Search Result is Safe for All Age", onTap: (){},trailing: Switch(value: false,onChanged: (vale){},),),
-                  SettingsMenuTile(icon: Iconsax.image, title: 'HD Image Quality', subTitle: "Set Image Quality to be Seen", onTap: (){},trailing: Switch(value: false,onChanged: (vale){},),),
+                  SettingsMenuTile(
+                    icon: Iconsax.document_upload,
+                    title: 'Load Data',
+                    subTitle: "Upload data to Your Cloud Firebase",
+                    onTap: () {},
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.location,
+                    title: 'GeoLocation',
+                    subTitle: "Set Recommendation Based on Location",
+                    onTap: () {},
+                    trailing: Switch(
+                      value: true,
+                      onChanged: (vale) {},
+                    ),
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.security_user,
+                    title: 'Safe Mode',
+                    subTitle: "Search Result is Safe for All Age",
+                    onTap: () {},
+                    trailing: Switch(
+                      value: false,
+                      onChanged: (vale) {},
+                    ),
+                  ),
+                  SettingsMenuTile(
+                    icon: Iconsax.image,
+                    title: 'HD Image Quality',
+                    subTitle: "Set Image Quality to be Seen",
+                    onTap: () {},
+                    trailing: Switch(
+                      value: false,
+                      onChanged: (vale) {},
+                    ),
+                  ),
 
                   /// LogOut Button
                   const SizedBox(
@@ -84,15 +166,17 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: OutlinedButton(onPressed: (){},child: const Text("Logout"),),
+                    child: OutlinedButton(
+                      onPressed: () => controller.logOutAccountWarningPopUp(),
+                      child: const Text("Logout"),
+                    ),
                   ),
                   const SizedBox(
-                    height: TSizes.spaceBtwSections * 2.5,
+                    height: TSizes.spaceBtwSections,
                   ),
                 ],
               ),
             )
-
           ],
         ),
       ),
